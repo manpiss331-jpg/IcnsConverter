@@ -1,0 +1,29 @@
+ICNS Converter is installed
+===========================
+
+QUICK START
+-----------
+1. Open ICNS Converter from the Start Menu (or the desktop shortcut if you
+   selected one).
+2. Add individual .icns files or a folder.
+3. Choose the output format and the sizes you want.
+4. Click Convert.
+
+WHERE THINGS ARE
+----------------
+- App: C:\Users\<your user name>\AppData\Local\Programs\IcnsConverter
+or
+C:\Program Files\IcnsConverter for all users
+depends on if you changed it or not.
+- Start Menu: ICNS Converter
+- Uninstall: Settings > Apps > Installed apps > ICNS Converter
+
+NOTES
+-----
+- The app is self-contained. No .NET installation is required.
+- Converted files are written next to the source files by default.
+  Existing files are never overwritten; a number is appended instead.
+- The app can also open .icns files passed on the command line, so you can
+  use "Open with" or a shortcut with an icon file.
+
+Thanks for installing ICNS Converter.

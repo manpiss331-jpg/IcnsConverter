@@ -1,0 +1,29 @@
+ICNS Converter 1.0.0
+====================
+
+This installer will install ICNS Converter on your computer.
+
+WHAT WILL BE INSTALLED
+----------------------
+- ICNS Converter.exe (self-contained; no .NET installation required)
+- Start Menu shortcut
+- Optional desktop shortcut
+- Uninstall entry in Settings > Apps
+
+INSTALL LOCATION
+----------------
+C:\Users\<your user name>\AppData\Local\Programs\IcnsConverter or
+C:\Program Files\IcnsConverter for all users
+you can change it.
+
+REQUIREMENTS
+------------
+- Windows 10 or Windows 11, 64-bit
+- No additional runtime, or .NET installation required
+
+DURING AN UPGRADE
+-----------------
+If ICNS Converter is running, Setup will close it before replacing the files.
+Your source icons and converted images are not modified.
+
+Click Next to continue.

@@ -1,0 +1,38 @@
+ICNS Converter 1.0.0 - Windows 11 ARM64
+======================================
+
+This ARM64 package installs ICNS Converter for the current Windows user.
+
+ARM64 NOTE
+----------
+This package currently contains the x64 build. Windows 11 ARM64 runs it
+through the built-in x64 emulation layer. It is not a native ARM64 build.
+The setup itself currently uses x64-compatible install mode and includes
+the x64 native libraries, so it is not ARM64-only.
+A native ARM64 build will be offered when the .NET 10 ARM64 runtime pack
+is available.
+
+WHAT WILL BE INSTALLED
+----------------------
+- ICNS Converter.exe (self-contained; no .NET installation required)
+- Start Menu shortcut
+- Optional desktop shortcut
+- Uninstall entry in Settings > Apps
+
+INSTALL LOCATION
+----------------
+C:\Users\<your user name>\AppData\Local\Programs\IcnsConverter or
+C:\Program Files\IcnsConverter for all users
+you can change it.
+
+REQUIREMENTS
+------------
+- Windows 11 on ARM64
+- No additional runtimes, or .NET installation required
+
+DURING AN UPGRADE
+-----------------
+If ICNS Converter is running, Setup will close it before replacing the files.
+Your source icons and converted images are not modified.
+
+Click Next to continue.

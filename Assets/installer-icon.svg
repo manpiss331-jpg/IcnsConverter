@@ -1,0 +1,32 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="0.55" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EAF2FF"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#082F49" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect x="24" y="24" width="976" height="976" rx="224" fill="url(#bg)"/>
+  <path d="M24 400 C 170 210 430 96 760 96 L 1000 96 L 1000 24 Q 1000 24 800 24 L 224 24 Q 24 24 24 224 Z" fill="#FFFFFF" opacity="0.12"/>
+
+  <rect x="212" y="348" width="600" height="472" rx="76" fill="url(#box)" filter="url(#shadow)"/>
+  <path d="M212 424 H812" stroke="#D6E3F7" stroke-width="18"/>
+  <path d="M512 348 V424" stroke="#D6E3F7" stroke-width="18"/>
+
+  <path d="M512 500 V668" stroke="url(#arrow)" stroke-width="90" stroke-linecap="round"/>
+  <path d="M424 592 L512 680 L600 592" stroke="url(#arrow)" stroke-width="90" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <rect x="350" y="736" width="324" height="38" rx="19" fill="#D6E3F7"/>
+</svg>
