@@ -1,0 +1,19 @@
+# Build output
+bin/
+obj/
+release/
+publish/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Debug symbols and test output
+*.pdb
+TestResults/
+
+# Logs and temporary files
+*.log
+*.tmp

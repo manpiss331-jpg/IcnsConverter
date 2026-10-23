@@ -1,0 +1,214 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="IcnsConverter.App"
+             RequestedThemeVariant="Dark">
+
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+
+        <ResourceDictionary x:Key="Light">
+          <SolidColorBrush x:Key="AppBackgroundBrush" Color="#F2F5FA" />
+          <SolidColorBrush x:Key="PanelBrush" Color="#FFFFFF" />
+          <SolidColorBrush x:Key="PanelBorderBrush" Color="#E2E7F0" />
+          <SolidColorBrush x:Key="SubtleBrush" Color="#F5F7FC" />
+          <SolidColorBrush x:Key="SubtleBorderBrush" Color="#DCE2EE" />
+          <SolidColorBrush x:Key="TextPrimaryBrush" Color="#131A29" />
+          <SolidColorBrush x:Key="TextSecondaryBrush" Color="#47536A" />
+          <SolidColorBrush x:Key="TextMutedBrush" Color="#78849A" />
+          <SolidColorBrush x:Key="AccentBrush" Color="#3D6DF5" />
+          <SolidColorBrush x:Key="AccentHoverBrush" Color="#2F5CE0" />
+          <SolidColorBrush x:Key="AccentPressedBrush" Color="#244BC0" />
+          <SolidColorBrush x:Key="AccentSoftBrush" Color="#E8EEFF" />
+          <SolidColorBrush x:Key="AccentBorderBrush" Color="#B9CCFF" />
+          <SolidColorBrush x:Key="SuccessBrush" Color="#0E9F6E" />
+          <SolidColorBrush x:Key="SuccessSoftBrush" Color="#E3F8F0" />
+          <SolidColorBrush x:Key="DangerBrush" Color="#D64545" />
+          <SolidColorBrush x:Key="DangerSoftBrush" Color="#FDEBEC" />
+          <SolidColorBrush x:Key="LogBrush" Color="#F7F9FD" />
+          <SolidColorBrush x:Key="DropZoneBrush" Color="#FAFBFF" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+          <SolidColorBrush x:Key="AppBackgroundBrush" Color="#0A0C11" />
+          <SolidColorBrush x:Key="PanelBrush" Color="#121620" />
+          <SolidColorBrush x:Key="PanelBorderBrush" Color="#232A38" />
+          <SolidColorBrush x:Key="SubtleBrush" Color="#1A2030" />
+          <SolidColorBrush x:Key="SubtleBorderBrush" Color="#2C3547" />
+          <SolidColorBrush x:Key="TextPrimaryBrush" Color="#F2F5FA" />
+          <SolidColorBrush x:Key="TextSecondaryBrush" Color="#B8C1D4" />
+          <SolidColorBrush x:Key="TextMutedBrush" Color="#8590A6" />
+          <SolidColorBrush x:Key="AccentBrush" Color="#6C9EFF" />
+          <SolidColorBrush x:Key="AccentHoverBrush" Color="#82AEFF" />
+          <SolidColorBrush x:Key="AccentPressedBrush" Color="#5A8AEF" />
+          <SolidColorBrush x:Key="AccentSoftBrush" Color="#17233B" />
+          <SolidColorBrush x:Key="AccentBorderBrush" Color="#2E4A7A" />
+          <SolidColorBrush x:Key="SuccessBrush" Color="#4ADE80" />
+          <SolidColorBrush x:Key="SuccessSoftBrush" Color="#123326" />
+          <SolidColorBrush x:Key="DangerBrush" Color="#FF7A7A" />
+          <SolidColorBrush x:Key="DangerSoftBrush" Color="#3A1A1F" />
+          <SolidColorBrush x:Key="LogBrush" Color="#0E121A" />
+          <SolidColorBrush x:Key="DropZoneBrush" Color="#0F141E" />
+        </ResourceDictionary>
+
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource PanelBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="16" />
+      <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <Style Selector="TextBlock.title">
+      <Setter Property="FontSize" Value="21" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.section-title">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.label">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="Medium" />
+      <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.hint">
+      <Setter Property="FontSize" Value="11.5" />
+      <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style Selector="Button.toolbar">
+      <Setter Property="Background" Value="{DynamicResource SubtleBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SubtleBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="9" />
+      <Setter Property="Padding" Value="12,7" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+    <Style Selector="Button.toolbar:pointerover">
+      <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentBorderBrush}" />
+    </Style>
+
+    <Style Selector="Button.ghost">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Foreground" Value="{DynamicResource TextMutedBrush}" />
+      <Setter Property="Padding" Value="8,4" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    <Style Selector="Button.ghost:pointerover">
+      <Setter Property="Background" Value="{DynamicResource SubtleBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+    </Style>
+
+    <Style Selector="Button.accent">
+      <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Foreground" Value="White" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="16,12" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button.accent:pointerover">
+      <Setter Property="Background" Value="{DynamicResource AccentHoverBrush}" />
+    </Style>
+    <Style Selector="Button.accent:pressed">
+      <Setter Property="Background" Value="{DynamicResource AccentPressedBrush}" />
+    </Style>
+    <Style Selector="Button.accent:disabled">
+      <Setter Property="Opacity" Value="0.45" />
+    </Style>
+
+    <Style Selector="ToggleButton.chip">
+      <Setter Property="Background" Value="{DynamicResource SubtleBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SubtleBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="999" />
+      <Setter Property="Padding" Value="11,6" />
+      <Setter Property="Margin" Value="0,0,7,7" />
+      <Setter Property="FontSize" Value="11.5" />
+      <Setter Property="FontWeight" Value="Medium" />
+      <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    </Style>
+    <Style Selector="ToggleButton.chip:pointerover">
+      <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentBorderBrush}" />
+    </Style>
+    <Style Selector="ToggleButton.chip:checked">
+      <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+    </Style>
+
+    <Style Selector="Border.pill">
+      <Setter Property="Background" Value="{DynamicResource SubtleBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SubtleBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="999" />
+      <Setter Property="Padding" Value="10,5" />
+    </Style>
+
+    <Style Selector="Border.badge">
+      <Setter Property="Background" Value="{DynamicResource DangerSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="999" />
+      <Setter Property="Padding" Value="8,4" />
+    </Style>
+    <Style Selector="Border.badge.ok">
+      <Setter Property="Background" Value="{DynamicResource SuccessSoftBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
+    </Style>
+
+    <Style Selector="Rectangle.drop-outline">
+      <Setter Property="Stroke" Value="{DynamicResource SubtleBorderBrush}" />
+      <Setter Property="Fill" Value="{DynamicResource DropZoneBrush}" />
+    </Style>
+    <Style Selector="Grid.drag Rectangle.drop-outline">
+      <Setter Property="Stroke" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Fill" Value="{DynamicResource AccentSoftBrush}" />
+    </Style>
+
+    <Style Selector="ComboBox">
+      <Setter Property="MinHeight" Value="36" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="MinHeight" Value="36" />
+    </Style>
+
+    <Style Selector="TextBox.log">
+      <Setter Property="MinHeight" Value="0" />
+      <Setter Property="Background" Value="{DynamicResource LogBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SubtleBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="10,8" />
+      <Setter Property="FocusAdorner" Value="{x:Null}" />
+      <Setter Property="FontFamily" Value="Consolas" />
+      <Setter Property="FontSize" Value="11.5" />
+      <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+      <Setter Property="AcceptsReturn" Value="True" />
+    </Style>
+
+    <Style Selector="ToggleSwitch">
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+  </Application.Styles>
+</Application>

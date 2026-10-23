@@ -1,0 +1,211 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:IcnsConverter"
+        x:Class="IcnsConverter.MainWindow"
+        Title="ICNS Converter"
+        Width="1120" Height="780" MinWidth="980" MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource AppBackgroundBrush}"
+        Icon="/Assets/app.ico">
+
+  <Grid RowDefinitions="Auto,*">
+
+    <!-- ================= Header ================= -->
+    <Border Grid.Row="0" Background="{DynamicResource PanelBrush}"
+            BorderBrush="{DynamicResource PanelBorderBrush}" BorderThickness="0,0,0,1"
+            Padding="24,16">
+      <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+        <Image Source="/Assets/app-icon-128.png" Width="44" Height="44" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" Spacing="2">
+          <TextBlock Text="ICNS Converter" Classes="title" />
+          <TextBlock Text="Extract every size from macOS icon files"
+                     FontSize="11.5" Foreground="{DynamicResource TextMutedBrush}" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+          <Border Classes="pill" VerticalAlignment="Center">
+            <TextBlock x:Name="FileCountBadge" Text="0 files" FontSize="11"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+          </Border>
+          <ToggleSwitch x:Name="ThemeSwitch" IsChecked="True" OnContent="Dark" OffContent="Light"
+                        ToolTip.Tip="Switch between dark and light appearance" />
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- ================= Body ================= -->
+    <Grid Grid.Row="1" ColumnDefinitions="*,392" Margin="24,20,24,24">
+
+      <!-- Left: files + activity -->
+      <Grid Grid.Column="0" RowDefinitions="Auto,*,190" Margin="0,0,20,0">
+
+        <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,12">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Add files" Classes="toolbar" Click="AddFiles_Click" />
+            <Button Content="Add folder" Classes="toolbar" Click="AddFolder_Click" />
+            <Button Content="Remove selected" Classes="toolbar" Click="RemoveSelected_Click" />
+          </StackPanel>
+          <TextBlock x:Name="SelectionSummary" Grid.Column="1" Text="No files loaded"
+                     FontSize="11" Foreground="{DynamicResource TextMutedBrush}"
+                     HorizontalAlignment="Right" VerticalAlignment="Center" Margin="12,0"
+                     TextTrimming="CharacterEllipsis" />
+          <Button Grid.Column="2" Content="Clear all" Classes="toolbar" Click="Clear_Click" />
+        </Grid>
+
+        <Grid x:Name="DropZone" Grid.Row="1" Background="Transparent"
+              DragDrop.AllowDrop="True" ClipToBounds="True">
+          <Rectangle x:Name="DropOutline" Classes="drop-outline" RadiusX="16" RadiusY="16"
+                     StrokeThickness="1.5" StrokeDashArray="6,4" Margin="1"
+                     IsHitTestVisible="False" />
+          <ListBox x:Name="FileList" SelectionMode="Multiple" Background="Transparent"
+                   BorderThickness="0" Padding="7" Margin="1">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="local:IcnsFile">
+                <Grid ColumnDefinitions="Auto,*,Auto" Margin="8,6" ToolTip.Tip="{Binding FilePath}">
+                  <Border Width="36" Height="36" CornerRadius="9"
+                          Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                    <TextBlock Text="ICNS" FontSize="9" FontWeight="Bold"
+                               Foreground="{DynamicResource AccentBrush}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </Border>
+                  <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+                    <TextBlock Text="{Binding Name}" FontSize="13" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock Text="{Binding Summary}" FontSize="10.5"
+                               Foreground="{DynamicResource TextMutedBrush}"
+                               TextTrimming="CharacterEllipsis" />
+                  </StackPanel>
+                  <Border Grid.Column="2" Classes="badge ok" VerticalAlignment="Center"
+                          IsVisible="{Binding IsReadable}">
+                    <TextBlock Text="{Binding Badge}" FontSize="10" FontWeight="SemiBold"
+                               Foreground="{DynamicResource SuccessBrush}" />
+                  </Border>
+                  <Border Grid.Column="2" Classes="badge" VerticalAlignment="Center"
+                          IsVisible="{Binding !IsReadable}">
+                    <TextBlock Text="Error" FontSize="10" FontWeight="SemiBold"
+                               Foreground="{DynamicResource DangerBrush}" />
+                  </Border>
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+
+          <StackPanel x:Name="EmptyHint" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Spacing="10" MaxWidth="380">
+            <Image Source="/Assets/app-icon-128.png" Width="84" Height="84" HorizontalAlignment="Center" />
+            <TextBlock Text="Drop your ICNS files here" FontSize="19" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimaryBrush}" HorizontalAlignment="Center" />
+            <TextBlock Text="Add individual files or scan a whole folder. Every icon size inside each file is extracted."
+                       FontSize="12" Foreground="{DynamicResource TextMutedBrush}"
+                       TextWrapping="Wrap" TextAlignment="Center" />
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" Margin="0,4,0,0">
+              <Button Content="Choose files" Classes="accent" Click="AddFiles_Click" Padding="14,9" />
+              <Button Content="Choose folder" Classes="toolbar" Click="AddFolder_Click" />
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2" Classes="card" Margin="0,14,0,0" Padding="14,12">
+          <Grid RowDefinitions="Auto,*">
+            <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,8">
+              <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <Ellipse Width="7" Height="7" Fill="{DynamicResource SuccessBrush}" VerticalAlignment="Center" />
+                <TextBlock Text="Activity" FontWeight="SemiBold" FontSize="12"
+                           Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" />
+              </StackPanel>
+              <Button Grid.Column="1" Content="Copy" Classes="ghost" Click="CopyLog_Click" />
+              <Button Grid.Column="2" Content="Clear" Classes="ghost" Click="ClearLog_Click" />
+            </Grid>
+            <TextBox x:Name="LogBox" Grid.Row="1" Classes="log" IsReadOnly="True" />
+          </Grid>
+        </Border>
+      </Grid>
+
+      <!-- Right: options -->
+      <Grid Grid.Column="1" RowDefinitions="*,Auto">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                      FocusAdorner="{x:Null}">
+          <StackPanel Spacing="12" MaxWidth="368" HorizontalAlignment="Left">
+
+            <Border Classes="card">
+              <StackPanel Spacing="10">
+                <TextBlock Text="Output" Classes="section-title" />
+                <ComboBox x:Name="FormatBox" HorizontalAlignment="Stretch" />
+                <TextBlock x:Name="FormatHint" Classes="hint" />
+                <StackPanel x:Name="QualityPanel" Spacing="6" IsVisible="False">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="Quality" Classes="label" />
+                    <TextBlock x:Name="QualityLabel" Grid.Column="1" Text="90" Classes="label"
+                               Foreground="{DynamicResource AccentBrush}" />
+                  </Grid>
+                  <Slider x:Name="QualitySlider" Minimum="1" Maximum="100" Value="90" />
+                </StackPanel>
+                <StackPanel x:Name="BgPanel" Spacing="6" IsVisible="False">
+                  <TextBlock Text="Background for transparent areas" Classes="label" />
+                  <ComboBox x:Name="BgBox" HorizontalAlignment="Stretch" />
+                </StackPanel>
+                <StackPanel x:Name="IcoPanel" Spacing="6" IsVisible="False">
+                  <CheckBox x:Name="CombineIcoBox" IsChecked="True" Content="Combine sizes into one .ico" />
+                  <TextBlock Text="ICO supports up to 256×256; larger sizes are resized." Classes="hint" />
+                </StackPanel>
+              </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+              <StackPanel Spacing="7">
+                <TextBlock Text="Sizes" Classes="section-title" Margin="0,0,0,2" />
+                <RadioButton x:Name="AllRadio" GroupName="mode" Content="All sizes"
+                             IsCheckedChanged="ModeChanged" />
+                <RadioButton x:Name="LargestRadio" GroupName="mode" Content="Largest size only"
+                             IsChecked="True" IsCheckedChanged="ModeChanged" />
+                <RadioButton x:Name="SelectedRadio" GroupName="mode" Content="Choose specific sizes"
+                             IsCheckedChanged="ModeChanged" />
+                <WrapPanel x:Name="SizesPanel" Margin="24,6,0,0" IsEnabled="False" IsVisible="False" />
+                <TextBlock x:Name="SizesHint" Text="Add files to see their sizes." Classes="hint"
+                           Margin="24,0,0,0" IsVisible="False" />
+                <StackPanel x:Name="MissingPanel" Spacing="6" IsEnabled="False"
+                            IsVisible="False" Margin="0,6,0,0">
+                  <TextBlock Text="If a chosen size is missing" Classes="label" />
+                  <ComboBox x:Name="MissingBox" HorizontalAlignment="Stretch" />
+                </StackPanel>
+              </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Destination" Classes="section-title" />
+                <TextBlock Text="Output folder" Classes="label" />
+                <Grid ColumnDefinitions="*,Auto">
+                  <TextBox x:Name="OutBox" PlaceholderText="Same folder as each source file"
+                           VerticalAlignment="Center" />
+                  <Button Grid.Column="1" Content="Browse" Classes="toolbar" Margin="8,0,0,0"
+                          Click="BrowseOut_Click" />
+                </Grid>
+                <TextBlock Text="Existing files are never overwritten." Classes="hint" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="1" Classes="card" Padding="14" Margin="0,12,24,0">
+          <StackPanel Spacing="10">
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Text="Ready to convert" Classes="label" />
+              <TextBlock x:Name="ConvertHint" Grid.Column="1" Text="Nothing to convert" Classes="hint" />
+            </Grid>
+            <Button x:Name="ConvertButton" Classes="accent" HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center" Click="Convert_Click">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Path Width="17" Height="17" Stretch="Uniform"
+                      Data="M12 4v10m0 0 4-4m-4 4-4-4M5 20h14"
+                      Stroke="White" StrokeThickness="1.8" StrokeLineCap="Round" StrokeJoin="Round" />
+                <TextBlock x:Name="ConvertLabel" Text="Convert" FontWeight="SemiBold" Foreground="White" />
+              </StackPanel>
+            </Button>
+          </StackPanel>
+        </Border>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>
